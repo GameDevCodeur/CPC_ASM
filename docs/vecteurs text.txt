@@ -1,0 +1,299 @@
+ROMs Vecteurs System – Gestion TEXTE (#BB4E – #BBB7)
+
+CE = CONDITIONS D’ENTRÉE
+CS = CONDITIONS DE SORTIE
+
+REGS = REGISTRES
+C = FLAG CARRY
+Z = FLAG ZÉRO
+
+
+GESTIONNAIRE TEXTE
+******************
+ 
+
+#BB4E – INITIALISATION DU MODE TEXTE.
+
+CE: Rien.
+CS: AF, BC, DE, HL sont modifiés.
+
+ 
+
+#BB51 – RESET DU MODE TEXTE.
+
+CE: Rien.
+CS: Idem #BB4E.
+
+ 
+
+#BB54 – PERMET A UN CARACTÈRE D’ÊTRE PLACE EN MODE TEXTE.
+
+CE: Rien.
+CS: AF est modifié.
+
+#BB57 – INTERDICTION DE PLACER DES CARACTÈRES SUR L’ÉCRAN.
+
+CE: Rien.
+CS: AF est modifié.
+
+
+#BB5A – SORTIE SUR L’ÉCRAN EN MODE TEXTE D’UN CARACTÈRE 
+		OU D’UN CODE DE CONTRÔLE INTERPRÉTÉ (CODES ENTRES 0 & 1F).
+
+CE: A contient le caractère a envoyer.
+CS: Tous les regs sont préservés.
+
+ 
+
+#BB5D – SORTIE SUR L’ÉCRAN EN MODE TEXTE D’UN CARACTÈRE OU DU GRAPHIQUE CORRESPONDANT A UN CODE DE CONTRÔLE.
+
+CE: A contient le caractère a imprimer.
+CS: AF, BC, DE, HL sont modifiés.
+
+ 
+
+#BB60 – LECTURE D’UN CARACTÈRE EN PROVENANCE DE L’ÉCRAN A LA POSITION COURANTE DU CURSEUR.
+
+CE: Rien.
+CS: Si un caractère a été reconnu C=1 et A contient ce caractère.
+       Sinon C=0 et A contient 0.
+
+ 
+
+#BB63 – POSITIONNEMENT ON ou OFF DU DISPOSITIF DE TRAITEMENT DES CARACTÈRES GRAPHIQUES.
+
+CE: A=0 si l’écriture de graphiques est interdite (off). Dans le cas contraire (on), A est différent de 0.
+CS: AF est modifié.
+
+ 
+
+#BB66 – POSITIONNE LA TAILLE DE LA FENÊTRE DE TEXTE COURANTE.
+
+CE: H contient la colonne des deux premiers coins.
+       D contient la colonne des deux autres coins.
+       L contient la ligne de deux coins.
+       E contient la ligne des deux autres coins.
+CS: AF, BC, DE, HL sont modifiés.
+
+ 
+
+#BB69 – LECTURE DE LA TAILLE DE LA FENÊTRE COURANTE.
+
+CE: Rien.
+CS: Si la fenêtre couvre l’écran complet, C=0, sinon C=1.
+       Dans les deux cas H contient le numéro de la colonne de gauche,
+       D le numéro de la colonne de droite,
+       L le numéro de la ligne du haut,
+       E le numéro de la ligne du bas.
+       A est modifié.
+
+ 
+
+#BB6C – EFFACEMENT DE LA FENÊTRE COURANTE (CLS)
+
+CE: Rien.
+CS: AF, BC, DE, HL sont modifiés.
+
+ 
+
+#BB6F – DÉTERMINE LA POSITION HORIZONTALE DU CURSEUR.
+
+CE: A contient le numéro de la colonne du curseur.
+CS: AF, HL sont modifiés.
+
+ 
+
+#BB72 – DÉTERMINE LA POSITION VERTICALE DU CURSEUR.
+
+CE: A contient le numéro de la ligne du curseur.
+CS: AF, HL sont modifiés.
+
+ 
+
+#BB75 – DÉTERMINE LA POSITION DU CURSEUR.
+
+CE: H contient le numéro de la colonne du curseur.
+       L contient le numéro de la ligne du curseur.
+CS: AF, HL sont modifiés.
+
+ 
+
+#BB78 – LECTURE DE LA POSITION DU CURSEUR.
+
+CE: Rien.
+CS: H contient le numéro de la colonne du curseur.
+       L contient le numéro de la ligne du curseur.
+       A contient le compteur de défilement (scrolling).
+
+ 
+
+#BB7B – UTILISATION DE L’AFFICHAGE DU CURSEUR EN MODE TEXTE.
+
+CE: Rien.
+CS: AF est modifié.
+
+ 
+
+#BB7E – INTERDICTION D’AFFICHER LE CURSEUR EN MODE TEXTE.
+
+CE: Rien.
+CS: AF est modifié.
+
+ 
+
+#BB81 – AUTORISE L’AFFICHAGE DU CURSEUR POUR LE SYSTÈME.
+
+CE: Rien.
+CS: Rien.
+
+ 
+
+#BB84 – INTERDIT L’AFFICHAGE DU CURSEUR POUR LE SYSTÈME.
+
+CE: Rien.
+CS: Rien.
+
+ 
+
+#BB87 – TESTE SI UNE POSITION CURSEUR SE TROUVE A L’INTÉRIEUR D’UNE FENÊTRE.
+
+CE: H contient le numéro de la colonne de la position a tester.
+       L contient le numéro de la ligne de la position a tester.
+CS: H contient le numéro de la colonne ou le caractère sera imprimé.
+       L contient le numéro de la ligne ou le caractère sera imprimé.
+       A et F sont modifiés.
+       Si l’impression ne doit pas causer le défilement de la fenêtre (scrolling), C=1 et B est modifié.
+       Si elle doit causer le défilement de la fenêtre, C=0 et B=FF.
+       Si elle doit causer un défilement inverse, C=0 et B=0.
+
+ 
+
+#BB8A – POSITIONNE UN CURSEUR SUR L’ÉCRAN.
+
+CE: Rien.
+CS: AF est modifié.
+
+ 
+
+#BB8D – ENLÈVE UN CURSEUR DE L’ÉCRAN.
+
+CE: Rien.
+CS: AF est modifié.
+
+ 
+
+#BB90 – DÉTERMINE LA COULEUR DES CARACTÈRES.
+
+CE: A contient le numéro d’encre.
+CS: AF, HL sont modifiés.
+
+ 
+
+#BB93 – LECTURE DE LA COULEUR DES CARACTÈRES.
+
+CE: Rien.
+CS: A contient le numéro d’encre. F est modifié.
+
+ 
+
+#BB96 – DÉTERMINE LA COULEUR DE FOND POUR LE TEXTE (PAPIER).
+
+CE: A contient le numéro d’encre.
+CS: AF, HL sont modifiés.
+
+ 
+
+#BB99 – LECTURE DE LA COULEUR DE FOND POUR LE TEXTE (PAPIER).
+
+CE: Rien.
+CS: A contient le numéro de la couleur du papier.
+       A et F sont modifiés.
+
+ 
+
+#BB9C – INTERVERTIT LA COULEUR DES CARACTÈRES ET CELLE DU FOND.
+
+CE: Rien.
+CS: AF, HL sont modifiés.
+
+ 
+
+#BB9F – PERMET OU INTERDIT L’AFFICHAGE DU FOND.
+
+CE: Si le fond est affiché (mode opaque), A=0.
+       Si le fond n’est pas affiché (mode transparent), A est différent de 0
+CS: AF, HL sont modifiés.
+
+ 
+
+#BBA2 – TESTE SI LE FOND PEUT OU NON ÊTRE AFFICHE.
+
+CE: Rien.
+CS: A=0 si le fond peut être affiché (mode opaque).
+       Sinon A est différent de 0 (mode transparent).
+       DE, HL, F sont modifiés.
+
+ 
+
+#BBA5 – LECTURE DE L’ADRESSE D’UNE MATRICE DE CARACTÈRES.
+
+CE: A contient le caractère a rechercher dans la matrice.
+CS: A et F sont modifiés.
+       Si la matrice est une matrice définie par l’utilisateur, C=1.
+       Si la matrice est dans la ROM, C=0 et HL contient l’adresse de la matrice.
+
+ 
+
+#BBA8 – POSITIONNEMENT D’UNE MATRICE POUR UN CARACTÈRE DÉFINI PAR L’UTILISATEUR.
+
+CE: A contient le caractère ou la matrice doit être positionnée.
+       HL contient l’adresse de la matrice.
+CS: Si le caractère est définissable par l’utilisateur, C=1 sinon C=0.
+       AF, BC, DE, HL sont modifiés.
+
+ 
+
+#BBAB – POSITIONNEMENT DE L’ADRESSE DE LA TABLE D’UNE MATRICE DÉFINIE PAR L’UTILISATEUR.
+
+CE: DE contient le premier caractère de la table.
+       HL contient l’adresse de départ de la nouvelle table.
+CS: S’il n’y avait pas encore de table, C=0 et A et HL sont modifiés.
+       S’il y avait déjà une table définie par l’utilisateur, C=1
+       A contient le premier caractère de l’ancienne table, HL contient l’adresse de l’ancienne table, BC, DE sont modifiés.
+
+ 
+
+#BBAE – LECTURE DE L’ADRESSE DE TABLE POUR UNE MATRICE DÉFINIE PAR L’UTILISATEUR.
+
+CE: Rien.
+CS: S’il n’y a pas de tables définies par l’utilisateur C=0 et A et HL sont modifiés.
+       S’il y en a une C=1 et A contient le premier caractère de la table et HL contient l’adresse de départ de la table.
+
+ 
+
+#BBB1 – LECTURE DE L’ADRESSE DE LA TABLE DES CODES DE CONTRÔLE.
+
+CE: Rien.
+CS: HL contient l’adresse des codes de contrôle. Tous les autres regs sont préservés.
+
+ 
+
+#BBB4 – POSITIONNE UNE NOUVELLE TABLE D’ATTRIBUT (VDU stream).
+
+CE: A contient le numéro du stream requis.
+CS: A contient le numéro de l’ancien stream. HL, F sont modifiés.
+
+ 
+
+#BBB7 – ÉCHANGE DES ÉTATS DE DEUX TABLES D’ATTRIBUTS (STREAMS).
+
+CE: B contient le numéro du stream 1.
+       C contient le numéro du stream 2.
+CS: AF, BC, DE, HL sont modifiés.
+
+Remarque : le stream est composé:
+
+– du numéro d’encre
+– du numéro de papier
+– du curseur position
+– des limites des fenêtres.
