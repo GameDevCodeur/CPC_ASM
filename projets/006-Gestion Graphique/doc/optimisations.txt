@@ -1,0 +1,28 @@
+====================
+BASE 
+====================
+$ HEX - BASE 16 (0-1-2-3-4-5-6-7-8-9-A-B-C-D-E-F)
+# DEC - BASE 10	(0-1-2-3-4-5-6-7-8-9)
+% BIN - BASE  2	(0-1)
+
+====================
+Optimisation de code
+====================
+
+http://shiar.nl/calc/z80/optimize
+https://wikiti.brandonw.net/index.php?title=Z80_Optimization
+http://z80-heaven.wikidot.com/optimization
+http://map.grauw.nl/articles/fast_loops.php
+
+--------
+
+XOR A   ; 4 cycles, 1 octet,  A=0, reset de la Carry et mise à 1 de Z
+LD  A,0 ; 7 cycles, 2 octets, A=0 et ne touche pas aux flags
+
+--------
+
+OR A	; 4 cycles, 1 octet
+CP 0	; 
+
+--------
+
