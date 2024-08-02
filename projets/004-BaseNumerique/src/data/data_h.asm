@@ -1,2 +1,0 @@
-STR_HELLO_WORLD:
-	.byte "HELLO WORLD !", $00
